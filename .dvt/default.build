@@ -1,0 +1,3 @@
+-incdir sv
+-incdir examples/sv
+examples/precondition/test_precondition.sv
