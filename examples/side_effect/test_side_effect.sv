@@ -13,32 +13,13 @@
 // limitations under the License.
 
 
-`ifndef __PROG_ASSERT
-`define __PROG_ASSERT
+`include "prog_assert.svh"
 
 
-`ifdef NDEBUG
-  `define prog_assert(expr) \
-    begin \
-    end
-`else
-  `define prog_assert(expr) \
-    begin \
-      if (!(expr)) \
-        $fatal(0, $sformatf("Assertion '%s' failed.", `"expr`")); \
-    end
-`endif
-
-
-`ifdef NDEBUG
-  `define prog_verify(expr) \
-    begin \
-      void'(expr); \
-    end
-`else
-  `define prog_verify(expr) \
-    `prog_assert(expr)
-`endif
-
-
-`endif
+module test_side_effect;
+  initial begin
+    byte some_var;
+    `prog_verify(std::randomize(some_var) with { some_var == 10; })
+    $display("some_var = %0d", some_var);
+  end
+endmodule
