@@ -24,8 +24,12 @@
 `else
   `define prog_assert(expr) \
     begin \
-      if (!(expr)) \
+      if (!(expr)) begin \
+`ifdef INCA \
+        $stacktrace; \
+`endif \
         $fatal(0, $sformatf("Assertion '%s' failed.", `"expr`")); \
+      end \
     end
 `endif
 
