@@ -1,3 +1,3 @@
 irun \
     -incdir ../../sv \
-    test_precondition.sv
+    test_side_effect.sv

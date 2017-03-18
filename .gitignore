@@ -1,3 +1,6 @@
-work/
-
 *.log
+
+irun.history
+INCA_libs/
+
+work/
