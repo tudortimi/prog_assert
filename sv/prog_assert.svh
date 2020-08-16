@@ -48,4 +48,8 @@
 `endif
 
 
+`define prog_cast(src, dst, msg = "") \
+  `prog_verify($cast(src, dst), msg)
+
+
 `endif
