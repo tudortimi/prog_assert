@@ -1,0 +1,3 @@
+irun \
+    -incdir ../../sv \
+    *.sv
