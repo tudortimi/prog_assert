@@ -52,8 +52,19 @@
   `prog_verify($cast(src, dst), msg)
 
 
-`define prog_unreachable \
-  `prog_assert(0, "Execution should never reach this point.")
+`ifdef NDEBUG
+  `define prog_unreachable \
+    begin \
+    end
+`else
+  `define prog_unreachable \
+    begin \
+`ifdef INCA \
+      $stacktrace; \
+`endif \
+      $fatal(0, "Execution should never reach this point."); \
+    end
+`endif
 
 
 `endif
