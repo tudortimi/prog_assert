@@ -38,13 +38,13 @@
 
 
 `ifdef NDEBUG
-  `define prog_verify(expr) \
+  `define prog_verify(expr, msg = "") \
     begin \
       void'(expr); \
     end
 `else
-  `define prog_verify(expr) \
-    `prog_assert(expr)
+  `define prog_verify(expr, msg = "") \
+    `prog_assert(expr, msg)
 `endif
 
 

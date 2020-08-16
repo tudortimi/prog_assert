@@ -21,4 +21,7 @@ module explicit_error_message;
   initial
     `prog_assert(0, "Some message")
 
+  initial
+    `prog_verify(0, "Some message")
+
 endmodule
