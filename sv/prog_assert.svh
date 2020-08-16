@@ -18,17 +18,20 @@
 
 
 `ifdef NDEBUG
-  `define prog_assert(expr) \
+  `define prog_assert(expr, msg = "") \
     begin \
     end
 `else
-  `define prog_assert(expr) \
+  `define prog_assert(expr, msg = "") \
     begin \
       if (!(expr)) begin \
+        string error_msg = $sformatf("Assertion '%s' failed.", `"expr`"); \
+        if (msg != "") \
+          error_msg = { error_msg, "\n", msg }; \
 `ifdef INCA \
         $stacktrace; \
 `endif \
-        $fatal(0, $sformatf("Assertion '%s' failed.", `"expr`")); \
+        $fatal(0, error_msg); \
       end \
     end
 `endif
