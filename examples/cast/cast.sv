@@ -31,4 +31,11 @@ module cast;
     `prog_cast(foo_inst, bar_inst)
   end
 
+
+  initial begin
+    foo foo_inst;
+    bar bar_inst = new();
+    `prog_cast(foo_inst, bar_inst, "Can't cast")
+  end
+
 endmodule
