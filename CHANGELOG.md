@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - possibility to specify an error message
 - `prog_cast` macro
+- `prog_unreachable` macro
 
 
 ## [1.1.0] - 2017-03-17

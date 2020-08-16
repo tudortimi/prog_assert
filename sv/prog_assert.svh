@@ -52,4 +52,22 @@
   `prog_verify($cast(src, dst), msg)
 
 
+`ifdef NDEBUG
+  `define prog_unreachable(msg = "") \
+    begin \
+    end
+`else
+  `define prog_unreachable(msg = "") \
+    begin \
+      automatic string error_msg = "Execution should never reach this point."; \
+      if (msg != "") \
+        error_msg = { error_msg, "\n", msg }; \
+`ifdef INCA \
+      $stacktrace; \
+`endif \
+      $fatal(0, error_msg); \
+    end
+`endif
+
+
 `endif
