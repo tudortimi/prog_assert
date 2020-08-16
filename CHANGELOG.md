@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - possibility to specify an error message
+- `prog_cast` macro
 
 
 ## [1.1.0] - 2017-03-17
