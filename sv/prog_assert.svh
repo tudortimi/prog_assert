@@ -52,4 +52,8 @@
   `prog_verify($cast(src, dst), msg)
 
 
+`define prog_unreachable \
+  `prog_assert(0, "Execution should never reach this point.")
+
+
 `endif
