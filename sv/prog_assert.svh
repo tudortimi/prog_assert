@@ -25,7 +25,7 @@
   `define prog_assert(expr, msg = "") \
     begin \
       if (!(expr)) begin \
-        string error_msg = $sformatf("Assertion '%s' failed.", `"expr`"); \
+        automatic string error_msg = $sformatf("Assertion '%s' failed.", `"expr`"); \
         if (msg != "") \
           error_msg = { error_msg, "\n", msg }; \
 `ifdef INCA \
