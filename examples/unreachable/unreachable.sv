@@ -19,6 +19,9 @@ module unreachable;
 
 
   initial
-    `prog_unreachable
+    `prog_unreachable()
+
+  initial
+    `prog_unreachable("Forbidden")
 
 endmodule
