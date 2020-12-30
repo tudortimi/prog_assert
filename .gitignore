@@ -13,13 +13,5 @@ gradle-app.setting
 
 *.log
 
-irun.history
-INCA_libs/
-
-xrun.history
-xcelium.d
-
-work/
-
 .idea
 *.iml
