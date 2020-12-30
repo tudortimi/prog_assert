@@ -20,3 +20,6 @@ xrun.history
 xcelium.d
 
 work/
+
+.idea
+*.iml
