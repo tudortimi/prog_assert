@@ -14,24 +14,24 @@ sourceSets {
 
 extensions.xrunDir = file("$buildDir/xrun")
 
-task runCastExample(type: Exec) {
+task runExample(type: RunExampleTask) {
     dependsOn genFullArgsFile
-    executable 'xrun'
-    args'-f', genFullArgsFile.destination.get().asFile
-    def dirPath = file('examples/cast').path
-    def files = new FileNameFinder().getFileNames dirPath,'*.sv'
-    args files
-    workingDir xrunDir
-    mkdir workingDir
 }
 
-task runExplicitErrorMessageExample(type: Exec) {
-    dependsOn genFullArgsFile
-    executable 'xrun'
-    args'-f', genFullArgsFile.destination.get().asFile
-    def dirPath = file('examples/explicit_error_message').path
-    def files = new FileNameFinder().getFileNames dirPath,'*.sv'
-    args files
-    workingDir xrunDir
-    mkdir workingDir
+class RunExampleTask extends DefaultTask {
+    @Option(option = 'name', description = 'name of the example to run')
+    String exampleName
+
+    @TaskAction
+    void run() {
+        project.exec {
+            executable 'xrun'
+            args'-f', project.genFullArgsFile.destination.get().asFile
+            def dirPath = project.file("examples/$exampleName").path
+            def files = new FileNameFinder().getFileNames dirPath,'*.sv'
+            args files
+            workingDir project.xrunDir
+            project.mkdir workingDir
+        }
+    }
 }
