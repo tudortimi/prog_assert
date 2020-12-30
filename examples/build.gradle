@@ -1,8 +1,8 @@
 extensions.xrunDir = file("$buildDir/xrun")
 
-file('.').eachDir { exampleDir ->
-    task("run_${exampleDir.name}", type: RunExampleTask) {
-        exampleName exampleDir.name
+file('.').eachDir { dir ->
+    task("run_${dir.name}", type: RunExampleTask) {
+        exampleDir dir
         dependsOn project(':').genFullArgsFile
     }
 }

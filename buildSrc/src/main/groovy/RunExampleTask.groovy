@@ -1,10 +1,10 @@
 import org.gradle.api.DefaultTask
-import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.TaskAction
 
 class RunExampleTask extends DefaultTask {
-    @Input
-    String exampleName
+    @InputDirectory
+    File exampleDir
 
     @TaskAction
     def run() {
@@ -18,7 +18,7 @@ class RunExampleTask extends DefaultTask {
     }
 
     def getExampleFiles() {
-        def dirPath = project.file(exampleName).path
+        def dirPath = exampleDir.path
         def files = new FileNameFinder().getFileNames dirPath,'*.sv'
         return files
     }
