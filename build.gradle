@@ -23,15 +23,19 @@ class RunExampleTask extends DefaultTask {
     String exampleName
 
     @TaskAction
-    void run() {
+    def run() {
         project.exec {
             executable 'xrun'
             args'-f', project.genFullArgsFile.destination.get().asFile
-            def dirPath = project.file("examples/$exampleName").path
-            def files = new FileNameFinder().getFileNames dirPath,'*.sv'
-            args files
+            args exampleFiles
             workingDir project.xrunDir
             project.mkdir workingDir
         }
+    }
+
+    def getExampleFiles() {
+        def dirPath = project.file("examples/$exampleName").path
+	def files = new FileNameFinder().getFileNames dirPath,'*.sv'
+	return files
     }
 }
