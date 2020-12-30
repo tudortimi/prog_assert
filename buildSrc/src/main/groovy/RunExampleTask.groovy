@@ -12,6 +12,7 @@ class RunExampleTask extends DefaultTask {
             executable 'xrun'
             args'-f', project.parent.genFullArgsFile.destination.get().asFile
             args exampleFiles
+            args '-incdir', exampleDir
             workingDir project.xrunDir
             project.mkdir workingDir
         }
