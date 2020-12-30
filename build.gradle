@@ -11,9 +11,3 @@ sourceSets {
         }
     }
 }
-
-extensions.xrunDir = file("$buildDir/xrun")
-
-task runExample(type: RunExampleTask) {
-    dependsOn genFullArgsFile
-}

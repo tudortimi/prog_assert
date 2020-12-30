@@ -11,10 +11,10 @@ class RunExampleTask extends DefaultTask {
     @OptionValues('name')
     def List<String> getAvailableExamples() {
 	def exampleNames = []
-	project.file('examples').eachDir {
-	    exampleNames << it.name
+        project.file('.').eachDir {
+	        exampleNames << it.name
         }
-	return exampleNames
+        return exampleNames
     }
 
     @TaskAction
@@ -22,7 +22,7 @@ class RunExampleTask extends DefaultTask {
         checkExampleName()
         project.exec {
             executable 'xrun'
-            args'-f', project.genFullArgsFile.destination.get().asFile
+            args'-f', project.parent.genFullArgsFile.destination.get().asFile
             args exampleFiles
             workingDir project.xrunDir
             project.mkdir workingDir
@@ -36,7 +36,7 @@ class RunExampleTask extends DefaultTask {
     }
 
     def getExampleFiles() {
-        def dirPath = project.file("examples/$exampleName").path
+        def dirPath = project.file(exampleName).path
         def files = new FileNameFinder().getFileNames dirPath,'*.sv'
         return files
     }

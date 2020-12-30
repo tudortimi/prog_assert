@@ -3,3 +3,5 @@ pluginManagement {
         mavenLocal()
     }
 }
+
+include 'examples'
