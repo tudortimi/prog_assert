@@ -22,8 +22,18 @@ class RunExampleTask extends DefaultTask {
     @Option(option = 'name', description = 'name of the example to run')
     String exampleName
 
+    @OptionValues('name')
+    def List<String> getAvailableExamples() {
+	def exampleNames = []
+	project.file('examples').eachDir {
+	    exampleNames << it.name
+        }
+	return exampleNames
+    }
+
     @TaskAction
     def run() {
+        checkExampleName()
         project.exec {
             executable 'xrun'
             args'-f', project.genFullArgsFile.destination.get().asFile
@@ -33,9 +43,15 @@ class RunExampleTask extends DefaultTask {
         }
     }
 
+    def checkExampleName() {
+        def isLegal = exampleName in getAvailableExamples()
+        if (!isLegal)
+            throw new InvalidUserDataException('illegal example name')
+    }
+
     def getExampleFiles() {
         def dirPath = project.file("examples/$exampleName").path
-	def files = new FileNameFinder().getFileNames dirPath,'*.sv'
-	return files
+        def files = new FileNameFinder().getFileNames dirPath,'*.sv'
+        return files
     }
 }
