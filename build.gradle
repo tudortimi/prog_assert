@@ -11,3 +11,16 @@ sourceSets {
         }
     }
 }
+
+extensions.xrunDir = file("$buildDir/xrun")
+
+task runCastExample(type: Exec) {
+    dependsOn genFullArgsFile
+    executable 'xrun'
+    args'-f', genFullArgsFile.destination.get().asFile
+    def dirPath = file('examples/cast').path
+    def files = new FileNameFinder().getFileNames dirPath,'*.sv'
+    args files
+    workingDir xrunDir
+    mkdir workingDir
+}
