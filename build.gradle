@@ -24,3 +24,14 @@ task runCastExample(type: Exec) {
     workingDir xrunDir
     mkdir workingDir
 }
+
+task runExplicitErrorMessageExample(type: Exec) {
+    dependsOn genFullArgsFile
+    executable 'xrun'
+    args'-f', genFullArgsFile.destination.get().asFile
+    def dirPath = file('examples/explicit_error_message').path
+    def files = new FileNameFinder().getFileNames dirPath,'*.sv'
+    args files
+    workingDir xrunDir
+    mkdir workingDir
+}
