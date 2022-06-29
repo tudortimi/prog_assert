@@ -4,7 +4,7 @@ projectDir.eachDir { dir ->
     if (dir != buildDir) {
         task("run_${dir.name}", type: RunExampleTask) {
             exampleDir dir
-            dependsOn project(':').genFullArgsFile
+            dependsOn project(':').genFullXrunArgsFile
         }
     }
 }
