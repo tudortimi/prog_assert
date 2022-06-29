@@ -3,6 +3,7 @@ plugins {
 }
 
 group 'com.verificationgentleman'
+version = '1.2.2'
 
 sourceSets {
     main {
