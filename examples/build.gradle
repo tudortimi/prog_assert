@@ -13,7 +13,7 @@ subprojects {
 
     task("run", type: RunExampleTask) {
         fullXrunArgsFile = genFullXrunArgsFile.destination
+        xrunDir = file("${buildDir}/xrun").toPath()
     }
 
-    extensions.xrunDir = file("$buildDir/xrun")
 }
