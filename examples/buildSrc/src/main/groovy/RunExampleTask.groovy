@@ -1,25 +1,26 @@
 import org.gradle.api.DefaultTask
-import org.gradle.api.tasks.InputDirectory
+import org.gradle.api.file.RegularFileProperty
+import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.TaskAction
 
 class RunExampleTask extends DefaultTask {
-    @InputDirectory
-    File exampleDir
+    @InputFile
+    RegularFileProperty fullXrunArgsFile
 
     @TaskAction
     def run() {
         project.exec {
             executable 'xrun'
-            args'-f', project.tasks.genFullXrunArgsFile.destination.get().asFile
+            args'-f', fullXrunArgsFile.get()
             args exampleFiles
-            args '-incdir', exampleDir
+            args '-incdir', project.projectDir
             workingDir project.xrunDir
             project.mkdir workingDir
         }
     }
 
     def getExampleFiles() {
-        def dirPath = exampleDir.path
+        def dirPath = project.projectDir.path
         def files = new FileNameFinder().getFileNames dirPath,'*.sv'
         return files
     }
