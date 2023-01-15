@@ -11,17 +11,10 @@ class RunExampleTask extends DefaultTask {
     def run() {
         project.exec {
             executable 'xrun'
-            args'-f', fullXrunArgsFile.get()
-            args exampleFiles
-            args '-incdir', project.projectDir
+            args '-f', fullXrunArgsFile.get()
+            args '-top', project.name
             workingDir project.xrunDir
             project.mkdir workingDir
         }
-    }
-
-    def getExampleFiles() {
-        def dirPath = project.projectDir.path
-        def files = new FileNameFinder().getFileNames dirPath,'*.sv'
-        return files
     }
 }

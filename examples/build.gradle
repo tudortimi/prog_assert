@@ -9,6 +9,8 @@ subprojects {
         compile 'com.verificationgentleman:prog_assert'
     }
 
+    sourceSets.main.sv.srcDirs = ['.']
+
     task("run", type: RunExampleTask) {
         fullXrunArgsFile = genFullXrunArgsFile.destination
     }
