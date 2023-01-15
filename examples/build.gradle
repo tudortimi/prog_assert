@@ -1,10 +1,18 @@
-extensions.xrunDir = file("$buildDir/xrun")
+plugins {
+    id 'com.verificationgentleman.gradle.hdvl.systemverilog' version '0.2.1' apply false
+}
 
-projectDir.eachDir { dir ->
-    if (dir != buildDir) {
-        task("run_${dir.name}", type: RunExampleTask) {
-            exampleDir dir
-            dependsOn project(':').genFullXrunArgsFile
-        }
+subprojects {
+    apply plugin: 'com.verificationgentleman.gradle.hdvl.systemverilog'
+
+    dependencies {
+        compile 'com.verificationgentleman:prog_assert'
+    }
+
+    sourceSets.main.sv.srcDirs = ['.']
+
+    task("run", type: RunExampleTask) {
+        fullXrunArgsFile = genFullXrunArgsFile.destination
+        xrunDir = file("${buildDir}/xrun").toPath()
     }
 }

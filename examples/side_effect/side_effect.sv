@@ -16,7 +16,7 @@
 `include "prog_assert.svh"
 
 
-module test_side_effect;
+module side_effect;
   initial begin
     byte some_var;
     `prog_verify(std::randomize(some_var) with { some_var == 10; })

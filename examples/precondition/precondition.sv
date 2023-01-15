@@ -13,7 +13,7 @@
 // limitations under the License.
 
 
-module test_precondition;
+module precondition;
   `include "rectangle.svh"
 
 
