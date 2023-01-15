@@ -15,3 +15,7 @@ gradle-app.setting
 
 .idea
 *.iml
+
+# DVT
+/.dvt/build.config.xml
+/.dvt/*.ls
