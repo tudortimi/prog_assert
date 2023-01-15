@@ -1,16 +1,3 @@
-.gradle
-**/build/
-!src/**/build/
-
-# Ignore Gradle GUI config
-gradle-app.setting
-
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
-
-# Cache of project
-.gradletasknamecache
-
 *.log
 
 .idea
@@ -19,3 +6,7 @@ gradle-app.setting
 # DVT
 /.dvt/build.config.xml
 /.dvt/*.ls
+
+# Gradle
+.gradle
+**/build/
