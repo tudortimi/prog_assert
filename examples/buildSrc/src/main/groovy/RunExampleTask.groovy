@@ -7,7 +7,7 @@ import org.gradle.api.tasks.*
 
 abstract class RunExampleTask extends DefaultTask {
     @InputFile
-    RegularFileProperty fullXrunArgsFile
+    abstract RegularFileProperty getFullXrunArgsFile()
 
     @Input
     abstract Property<Path> getXrunDir()
