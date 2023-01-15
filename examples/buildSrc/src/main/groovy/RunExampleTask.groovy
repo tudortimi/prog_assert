@@ -10,7 +10,7 @@ class RunExampleTask extends DefaultTask {
     def run() {
         project.exec {
             executable 'xrun'
-            args'-f', project.parent.genFullXrunArgsFile.destination.get().asFile
+            args'-f', project.tasks.genFullXrunArgsFile.destination.get().asFile
             args exampleFiles
             args '-incdir', exampleDir
             workingDir project.xrunDir

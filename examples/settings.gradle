@@ -1,0 +1,5 @@
+includeBuild '..'
+
+['cast', 'explicit_error_message', 'precondition', 'side_effect', 'unreachable'].each {
+    include it
+}
