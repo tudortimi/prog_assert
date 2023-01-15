@@ -15,5 +15,4 @@ subprojects {
         fullXrunArgsFile = genFullXrunArgsFile.destination
         xrunDir = file("${buildDir}/xrun").toPath()
     }
-
 }
